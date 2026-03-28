@@ -1,5 +1,7 @@
 # Axtella ERP Suit
 
+**Remote:** [github.com/Axtella/axtella-erp](https://github.com/Axtella/axtella-erp) — clone with `git clone https://github.com/Axtella/axtella-erp.git`. See [SECURITY.md](SECURITY.md) for tokens and credentials, and [CONTRIBUTING.md](CONTRIBUTING.md) for collaborators, branch protection, and repo metadata on GitHub.
+
 Unified local workspace that combines:
 - `bahrain-suite` (backend + frontend + mobile)
 - `axtella-backend-zatca` (ZATCA backend scaffold)
