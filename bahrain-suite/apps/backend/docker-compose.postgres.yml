@@ -1,0 +1,24 @@
+# Local dev Postgres aligned with apps/backend/.env (bahrain_app / Postgres / bahrain_properties).
+# Host port 5433 avoids clashing with another Postgres already bound to 5432.
+# Named volume ensures first-time init uses POSTGRES_* below (old anonymous volumes can ignore password changes).
+# Usage: npm run db:up   then   npm run db:check && npm run db:seed-dev-user
+# Reset data: npm run db:reset (wipes the named volume for this compose project)
+services:
+  postgres:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_USER: bahrain_app
+      POSTGRES_PASSWORD: Postgres
+      POSTGRES_DB: bahrain_properties
+    ports:
+      - '5433:5432'
+    volumes:
+      - bahrain_properties_pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U bahrain_app -d bahrain_properties']
+      interval: 2s
+      timeout: 5s
+      retries: 15
+
+volumes:
+  bahrain_properties_pgdata:

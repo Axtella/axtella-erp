@@ -1,0 +1,1 @@
+Integrations domain scaffold root.

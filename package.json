@@ -1,0 +1,22 @@
+{
+  "name": "axtella-erp-suit",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Root orchestration for Bahrain suite plus Axtella ZATCA backend scaffold.",
+  "scripts": {
+    "install:all": "npm --prefix \"bahrain-suite/apps/backend\" install && npm --prefix \"bahrain-suite/apps/frontend\" install && npm --prefix \"bahrain-suite/apps/mobile\" install && npm --prefix \"axtella-backend-zatca\" install",
+    "bootstrap:bahrain-auth": "npm --prefix \"bahrain-suite/apps/backend\" run db:check && npm --prefix \"bahrain-suite/apps/backend\" run db:migrate && npm --prefix \"bahrain-suite/apps/backend\" run db:seed-dev-user",
+    "check:bahrain-login": "node -e \"const base='http://127.0.0.1:3000'; const email=process.env.BAHRAIN_DEV_EMAIL||'dev@example.com'; const password=process.env.BAHRAIN_DEV_PASSWORD||'AxtellaDev2024!'; const run=async()=>{const h=await fetch(base+'/api/v1/health'); if(!h.ok) throw new Error('health failed '+h.status); const r=await fetch(base+'/api/v1/health/ready'); if(!r.ok) throw new Error('ready failed '+r.status); const l=await fetch(base+'/api/v1/auth/login',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({email,password})}); if(!l.ok) throw new Error('login failed '+l.status+' '+await l.text()); const data=await l.json(); if(!data.access_token) throw new Error('access_token missing'); console.log('Bahrain auth check passed for', email);}; run().catch((e)=>{console.error(e.message); process.exit(1);});\"",
+    "dev:bahrain-backend": "PORT=3000 npm --prefix \"bahrain-suite/apps/backend\" run start:dev",
+    "dev:bahrain-frontend": "npm --prefix \"bahrain-suite/apps/frontend\" run dev",
+    "dev:bahrain-mobile": "npm --prefix \"bahrain-suite/apps/mobile\" run dev",
+    "dev:axtella-backend": "PORT=3010 npm --prefix \"axtella-backend-zatca\" run start:dev",
+    "dev:all": "npx concurrently -n BAHRAIN_API,BAHRAIN_WEB,AXTELLA_API -c green,blue,magenta \"npm run dev:bahrain-backend\" \"npm run dev:bahrain-frontend\" \"npm run dev:axtella-backend\"",
+    "build:bahrain-backend": "npm --prefix \"bahrain-suite/apps/backend\" run build",
+    "build:bahrain-frontend": "npm --prefix \"bahrain-suite/apps/frontend\" run build",
+    "build:bahrain-mobile": "npm --prefix \"bahrain-suite/apps/mobile\" run build",
+    "build:axtella-backend": "npm --prefix \"axtella-backend-zatca\" run build",
+    "build:all": "npm run build:bahrain-backend && npm run build:bahrain-frontend && npm run build:bahrain-mobile && npm run build:axtella-backend",
+    "health:paths": "node -e \"const fs=require('fs'); const paths=['bahrain-suite/apps/backend/package.json','bahrain-suite/apps/frontend/package.json','bahrain-suite/apps/mobile/package.json','axtella-backend-zatca/package.json']; const missing=paths.filter((p)=>!fs.existsSync(p)); if(missing.length){console.error('Missing paths:\\n'+missing.join('\\n')); process.exit(1);} console.log('All expected app package.json files are present.');\""
+  }
+}

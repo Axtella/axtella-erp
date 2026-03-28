@@ -1,0 +1,1 @@
+CRM domain scaffold root.

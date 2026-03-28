@@ -1,0 +1,6 @@
+{
+  "reservation": {
+    "created": "Reservation created",
+    "cancelled": "Reservation cancelled"
+  }
+}

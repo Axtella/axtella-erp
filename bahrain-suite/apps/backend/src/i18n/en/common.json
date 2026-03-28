@@ -1,0 +1,9 @@
+{
+  "app": {
+    "name": "Axtella Platform"
+  },
+  "errors": {
+    "not_found": "Record not found",
+    "unauthorized": "Unauthorized"
+  }
+}

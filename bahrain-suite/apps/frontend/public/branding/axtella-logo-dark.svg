@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 60" fill="none">
+  <title>Axtella Global</title>
+  <defs>
+    <linearGradient
+      id="axtella-ryb-dark"
+      gradientUnits="objectBoundingBox"
+      x1="0"
+      y1="0"
+      x2="1"
+      y2="0"
+      gradientTransform="rotate(145 0.5 0.5)"
+    >
+      <stop offset="0%" stop-color="#C70F14"/>
+      <stop offset="50%" stop-color="#E4BE16"/>
+      <stop offset="100%" stop-color="#114A9F"/>
+    </linearGradient>
+  </defs>
+  <g transform="translate(0,8) scale(0.34375)">
+    <rect width="128" height="128" rx="24" fill="#0A0F1C"/>
+    <g transform="scale(4)">
+      <path
+        d="M9 26L16 7l7 19M11.5 18.5h9"
+        fill="none"
+        stroke="url(#axtella-ryb-dark)"
+        stroke-width="2.8"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+    </g>
+  </g>
+  <text
+    x="52"
+    y="38"
+    fill="#F8FAFC"
+    font-family="Inter, Poppins, Arial, system-ui, sans-serif"
+    font-size="26"
+    font-weight="700"
+  >Axtella</text>
+  <text
+    x="52"
+    y="54"
+    fill="#8BA3C0"
+    font-family="Inter, Poppins, Arial, system-ui, sans-serif"
+    font-size="11"
+    font-weight="600"
+    letter-spacing="0.14em"
+  >GLOBAL</text>
+</svg>

@@ -1,0 +1,6 @@
+{
+  "reservation": {
+    "created": "تم إنشاء الحجز",
+    "cancelled": "تم إلغاء الحجز"
+  }
+}

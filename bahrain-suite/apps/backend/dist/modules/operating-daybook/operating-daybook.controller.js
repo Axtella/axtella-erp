@@ -1,0 +1,68 @@
+"use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __param = (this && this.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.OperatingDaybookController = void 0;
+const common_1 = require("@nestjs/common");
+const swagger_1 = require("@nestjs/swagger");
+const roles_decorator_1 = require("../auth/decorators/roles.decorator");
+const user_role_enum_1 = require("../auth/user-role.enum");
+const create_operating_daybook_entry_dto_1 = require("./dto/create-operating-daybook-entry.dto");
+const find_operating_daybook_dto_1 = require("./dto/find-operating-daybook.dto");
+const operating_daybook_service_1 = require("./operating-daybook.service");
+const LEDGER_ROLES = [
+    user_role_enum_1.UserRole.ADMIN,
+    user_role_enum_1.UserRole.ACCOUNTANT,
+    user_role_enum_1.UserRole.STAFF,
+    user_role_enum_1.UserRole.HR,
+    user_role_enum_1.UserRole.DEVELOPER,
+];
+let OperatingDaybookController = class OperatingDaybookController {
+    constructor(service) {
+        this.service = service;
+    }
+    findAll(query) {
+        return this.service.findAll(query);
+    }
+    create(dto) {
+        return this.service.create(dto);
+    }
+};
+exports.OperatingDaybookController = OperatingDaybookController;
+__decorate([
+    (0, common_1.Get)(),
+    (0, swagger_1.ApiOperation)({
+        summary: 'Property operating daybook (cash-book style income / expense lines)',
+    }),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [find_operating_daybook_dto_1.FindOperatingDaybookDto]),
+    __metadata("design:returntype", void 0)
+], OperatingDaybookController.prototype, "findAll", null);
+__decorate([
+    (0, common_1.Post)(),
+    (0, roles_decorator_1.Roles)(user_role_enum_1.UserRole.ADMIN, user_role_enum_1.UserRole.ACCOUNTANT, user_role_enum_1.UserRole.STAFF),
+    (0, swagger_1.ApiOperation)({ summary: 'Add a daybook line (voucher-style)' }),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_operating_daybook_entry_dto_1.CreateOperatingDaybookEntryDto]),
+    __metadata("design:returntype", void 0)
+], OperatingDaybookController.prototype, "create", null);
+exports.OperatingDaybookController = OperatingDaybookController = __decorate([
+    (0, swagger_1.ApiTags)('operating-daybook'),
+    (0, swagger_1.ApiBearerAuth)('access-token'),
+    (0, common_1.Controller)('operating-daybook'),
+    (0, roles_decorator_1.Roles)(...LEDGER_ROLES),
+    __metadata("design:paramtypes", [operating_daybook_service_1.OperatingDaybookService])
+], OperatingDaybookController);
+//# sourceMappingURL=operating-daybook.controller.js.map

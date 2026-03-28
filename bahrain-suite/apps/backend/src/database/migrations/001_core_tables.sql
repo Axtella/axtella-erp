@@ -1,0 +1,30 @@
+CREATE TABLE IF NOT EXISTS investors (
+  id UUID PRIMARY KEY,
+  code VARCHAR(50) UNIQUE NOT NULL,
+  name VARCHAR(200) NOT NULL,
+  created_at TIMESTAMP DEFAULT NOW(),
+  updated_at TIMESTAMP DEFAULT NOW()
+);
+
+CREATE TABLE IF NOT EXISTS properties (
+  id UUID PRIMARY KEY,
+  code VARCHAR(50) UNIQUE NOT NULL,
+  name VARCHAR(200) NOT NULL,
+  property_type VARCHAR(50) NOT NULL,
+  investor_id UUID NULL,
+  owner_rent_monthly NUMERIC(14,2) DEFAULT 0,
+  status VARCHAR(30) DEFAULT 'active',
+  created_at TIMESTAMP DEFAULT NOW(),
+  updated_at TIMESTAMP DEFAULT NOW()
+);
+
+CREATE TABLE IF NOT EXISTS cost_centers (
+  id UUID PRIMARY KEY,
+  property_id UUID NOT NULL,
+  code VARCHAR(50) NOT NULL,
+  name VARCHAR(200) NOT NULL,
+  cost_center_type VARCHAR(50) NOT NULL,
+  is_active BOOLEAN DEFAULT TRUE,
+  created_at TIMESTAMP DEFAULT NOW(),
+  updated_at TIMESTAMP DEFAULT NOW()
+);
