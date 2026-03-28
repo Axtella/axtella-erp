@@ -49,6 +49,8 @@ GitHub rejects pushes that add or change files under `.github/workflows/` unless
 
    The workflow YAML lives in [`scripts/ci-workflow.yml`](scripts/ci-workflow.yml) so normal `git push` does not touch `.github/workflows/` until the file exists on GitHub.
 
+   **If the script returns `PUT failed 404` for `.github/workflows/ci.yml`:** the token can still write normal files, but GitHub blocks workflow paths without **`workflow`** (classic) or **Actions: Read and write** (fine-grained). Fix the token scopes, or use the **web UI** (option 3), which uses your browser login.
+
 Check whether Actions workflows are visible on the repo (no token):
 
 ```bash
