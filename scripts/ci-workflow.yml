@@ -1,0 +1,38 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+          cache-dependency-path: |
+            bahrain-suite/apps/backend/package-lock.json
+            bahrain-suite/apps/frontend/package-lock.json
+            bahrain-suite/apps/mobile/package-lock.json
+            axtella-backend-zatca/package-lock.json
+
+      - name: Install dependencies (all apps)
+        run: npm run install:all
+
+      - name: Build (all apps)
+        env:
+          CI: true
+        run: npm run build:all

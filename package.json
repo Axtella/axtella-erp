@@ -17,6 +17,8 @@
     "build:bahrain-mobile": "npm --prefix \"bahrain-suite/apps/mobile\" run build",
     "build:axtella-backend": "npm --prefix \"axtella-backend-zatca\" run build",
     "build:all": "npm run build:bahrain-backend && npm run build:bahrain-frontend && npm run build:bahrain-mobile && npm run build:axtella-backend",
-    "health:paths": "node -e \"const fs=require('fs'); const paths=['bahrain-suite/apps/backend/package.json','bahrain-suite/apps/frontend/package.json','bahrain-suite/apps/mobile/package.json','axtella-backend-zatca/package.json']; const missing=paths.filter((p)=>!fs.existsSync(p)); if(missing.length){console.error('Missing paths:\\n'+missing.join('\\n')); process.exit(1);} console.log('All expected app package.json files are present.');\""
+    "health:paths": "node -e \"const fs=require('fs'); const paths=['bahrain-suite/apps/backend/package.json','bahrain-suite/apps/frontend/package.json','bahrain-suite/apps/mobile/package.json','axtella-backend-zatca/package.json']; const missing=paths.filter((p)=>!fs.existsSync(p)); if(missing.length){console.error('Missing paths:\\n'+missing.join('\\n')); process.exit(1);} console.log('All expected app package.json files are present.');\"",
+    "github:publish-workflow": "python3 scripts/publish_workflow_to_github.py",
+    "github:workflows-check": "python3 scripts/publish_workflow_to_github.py --check"
   }
 }
