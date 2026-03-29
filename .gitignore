@@ -3,6 +3,7 @@ node_modules/
 
 # Environment
 .env
+axtella-backend-zatca/.env
 .env.local
 .env.*.local
 
