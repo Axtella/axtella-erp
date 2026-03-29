@@ -1,12 +1,15 @@
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
+import { ConfigService } from '@nestjs/config';
 
-export const ormConfig: TypeOrmModuleOptions = {
-  type: 'postgres',
-  host: process.env.DB_HOST || 'localhost',
-  port: Number(process.env.DB_PORT || 5432),
-  username: process.env.DB_USERNAME || 'postgres',
-  password: process.env.DB_PASSWORD || 'postgres',
-  database: process.env.DB_NAME || 'axtella_global_platform',
-  autoLoadEntities: true,
-  synchronize: false
-};
+export function typeOrmConfigFactory(config: ConfigService): TypeOrmModuleOptions {
+  return {
+    type: 'postgres',
+    host: config.get<string>('DB_HOST', 'localhost'),
+    port: Number(config.get<string>('DB_PORT', '5432')),
+    username: config.get<string>('DB_USERNAME', 'postgres'),
+    password: config.get<string>('DB_PASSWORD', 'postgres'),
+    database: config.get<string>('DB_NAME', 'axtella_global_platform'),
+    autoLoadEntities: true,
+    synchronize: false,
+  };
+}

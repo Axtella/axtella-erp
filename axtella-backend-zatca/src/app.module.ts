@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
 import { APP_GUARD } from '@nestjs/core';
-import { ConfigModule } from '@nestjs/config';
+import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { ormConfig } from './config/orm.config';
+import { typeOrmConfigFactory } from './config/orm.config';
 import { TenantsModule } from './modules/tenants/tenants.module';
 import { ProvisioningModule } from './modules/provisioning/provisioning.module';
 import { PropertiesModule } from './modules/hotel/properties/properties.module';
@@ -42,7 +42,11 @@ import { PermissionsGuard } from './modules/auth/guards/permissions.guard';
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
-    TypeOrmModule.forRoot(ormConfig),
+    TypeOrmModule.forRootAsync({
+      imports: [ConfigModule],
+      inject: [ConfigService],
+      useFactory: typeOrmConfigFactory,
+    }),
     TenantsModule,
     ProvisioningModule,
     PropertiesModule,
