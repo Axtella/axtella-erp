@@ -15,6 +15,15 @@ This workspace keeps both codebases intact and adds root scripts to run them fro
 - `bahrain-suite/apps/mobile` - Expo mobile app
 - `axtella-backend-zatca` - NestJS scaffold for ZATCA
 
+## Naming (don’t mix these up)
+
+| Name | Meaning |
+|------|---------|
+| **Axtella ERP Suit** | This **monorepo** (root): Bahrain suite + ZATCA backend in one workspace. |
+| **FMS** | **Axtella FMS — Fleet Management System**: white-label **product/module** for the Bahrain **web** app (`bahrain-suite/apps/frontend`). Set via `NEXT_PUBLIC_BRAND_MODULE` (default `fms`). See [`bahrain-suite/apps/frontend/lib/brand-module-logos.ts`](bahrain-suite/apps/frontend/lib/brand-module-logos.ts). |
+| **Bahrain suite** | Nest + Next (+ Expo) for Bahrain properties / ERP flows. The UI is often branded **FMS**, not “ZATCA”. |
+| **axtella-backend-zatca** | Separate Nest API for **ZATCA / global platform** (default dev port **3010**, its own DB). Not the FMS front end. |
+
 ## Prerequisites
 
 - Node.js 18+ (Node 20 recommended)
