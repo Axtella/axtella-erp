@@ -75,12 +75,15 @@ Run auth + RBAC bootstrap before first login:
 Then start API:
 - `npm run dev:axtella-backend` (or set `PORT=3010`)
 
+**Troubleshooting (port 3010 / `EADDRINUSE`):** Another process is already listening on 3010 (often a second ZATCA dev server). On macOS or Linux, list the listener with `lsof -nP -iTCP:3010 -sTCP:LISTEN`, then stop the duplicate dev server or end the stray PID. To run on a different port without changing the default script, use `PORT=3011 npm --prefix "axtella-backend-zatca" run start:dev` or `npm run dev:axtella-backend:3011`, then call the API at `http://localhost:3011/api/v1`.
+
 ## Run Commands
 
 - Bahrain backend: `npm run dev:bahrain-backend`
 - Bahrain frontend: `npm run dev:bahrain-frontend`
 - Bahrain mobile: `npm run dev:bahrain-mobile`
 - ZATCA Nest API: `npm run dev:axtella-backend`
+- ZATCA Nest API (alternate port 3011): `npm run dev:axtella-backend:3011`
 - Combined dev (Bahrain backend + Bahrain frontend + ZATCA Nest API): `npm run dev:all`
 
 Build all apps:

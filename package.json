@@ -11,6 +11,7 @@
     "dev:bahrain-frontend": "npm --prefix \"bahrain-suite/apps/frontend\" run dev",
     "dev:bahrain-mobile": "npm --prefix \"bahrain-suite/apps/mobile\" run dev",
     "dev:axtella-backend": "PORT=3010 npm --prefix \"axtella-backend-zatca\" run start:dev",
+    "dev:axtella-backend:3011": "PORT=3011 npm --prefix \"axtella-backend-zatca\" run start:dev",
     "dev:all": "npx concurrently -n BAHRAIN_API,BAHRAIN_WEB,AXTELLA_API -c green,blue,magenta \"npm run dev:bahrain-backend\" \"npm run dev:bahrain-frontend\" \"npm run dev:axtella-backend\"",
     "build:bahrain-backend": "npm --prefix \"bahrain-suite/apps/backend\" run build",
     "build:bahrain-frontend": "npm --prefix \"bahrain-suite/apps/frontend\" run build",
